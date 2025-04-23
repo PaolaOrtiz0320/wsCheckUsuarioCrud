@@ -7,7 +7,7 @@ Ing. en Tic´s
 Desarrollo de Software Avanzado
 
 # Tema
-webApi (apiRESTCheckUsuario)
+wsCheckUsuario
 
 # Catedratico:
 Luis Alejandro Santana Valadez

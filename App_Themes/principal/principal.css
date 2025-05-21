@@ -1,4 +1,6 @@
 ﻿body {
+    background-color: #f5f0fa; /* fondo muy claro con toque morado */
+    font-family: Arial;
 }
 
 .titulo {
@@ -12,7 +14,7 @@
     font-family: Arial;
     font-size: large;
     font-weight: bold;
-    color: black;
+    color: #4B0082; /* morado oscuro */
 }
 
 .tituloContenidoBlanco {
@@ -26,24 +28,41 @@
     font-family: Arial;
     font-size: medium;
     font-weight: normal;
-    color: black;
+    color: #eee; /* texto blanco claro para pie */
 }
 
-.captura {
+.pieBlanco {
     font-family: Arial;
-    font-size: small;
+    font-size: medium;
     font-weight: normal;
-    color: black;
+    color: white;
 }
 
 .pieNegrita {
     font-family: Arial;
     font-size: medium;
     font-weight: bold;
-    color: black;
+    color: #eee;
+}
+
+.pieBlancoNegrita {
+    font-family: Arial;
+    font-size: medium;
+    font-weight: bold;
+    color: white;
 }
 
 .pieImg {
     width: 20px;
     height: 20px;
 }
+
+a, a:link, a:visited {
+    color: white; /* links en blanco */
+    text-decoration: none;
+}
+
+    a:hover, a:focus {
+        color: #D1B3FF; /* un lila claro al pasar mouse */
+        text-decoration: underline;
+    }

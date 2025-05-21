@@ -89,7 +89,11 @@
     <Content Include="bootstrap\css\bootstrap.min.css" />
     <Content Include="bootstrap\css\bootstrap.rtl.css" />
     <Content Include="bootstrap\css\bootstrap.rtl.min.css" />
-    <Content Include="bootstrap\css\estilos.css" />
+    <Content Include="bootstrap\css\estilo.css" />
+    <Content Include="bootstrap\css\fondo.jpg" />
+    <Content Include="bootstrap\css\formularios.css" />
+    <Content Include="bootstrap\css\principal.css" />
+    <Content Include="bootstrap\css\somos.css" />
     <Content Include="bootstrap\js\bootstrap.bundle.js" />
     <Content Include="bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="bootstrap\js\bootstrap.esm.js" />
@@ -99,38 +103,44 @@
     <Content Include="bootstrap\js\jquery-3.5.1.min.js" />
     <Content Include="bootstrap\js\popper.js" />
     <Content Include="bootstrap\js\popper.min.js" />
+    <Content Include="Formulario web5.aspx" />
+    <Content Include="Formulario web4.aspx" />
     <Content Include="Formulario web1.aspx" />
+    <Content Include="Formulario web3.aspx" />
     <Content Include="Formulario web2.aspx" />
     <Content Include="Global.asax" />
     <Content Include="imagenes\AboutUs.gif" />
     <Content Include="imagenes\action_refresh.gif" />
     <Content Include="imagenes\action_stop.gif" />
+    <Content Include="imagenes\alumnos.png" />
     <Content Include="imagenes\bd1.jpg" />
     <Content Include="imagenes\carrito2.jpg" />
     <Content Include="imagenes\facebook.jpg" />
     <Content Include="imagenes\fotos\1.jpg" />
-    <Content Include="imagenes\fotos\10.jpg" />
-    <Content Include="imagenes\fotos\11.jpg" />
-    <Content Include="imagenes\fotos\12.jpg" />
-    <Content Include="imagenes\fotos\13.jpg" />
-    <Content Include="imagenes\fotos\14.jpg" />
-    <Content Include="imagenes\fotos\19.jpg" />
-    <Content Include="imagenes\fotos\15.jpg" />
     <Content Include="imagenes\fotos\2.jpg" />
-    <Content Include="imagenes\fotos\3.jpg" />
     <Content Include="imagenes\fotos\4.jpg" />
-    <Content Include="imagenes\fotos\5.jpg" />
-    <Content Include="imagenes\fotos\6.jpg" />
-    <Content Include="imagenes\fotos\7.jpg" />
-    <Content Include="imagenes\fotos\8.jpg" />
-    <Content Include="imagenes\fotos\9.jpg" />
-    <Content Include="imagenes\fotos\25.jpg" />
+    <Content Include="imagenes\fotos\hombre.jpg" />
+    <Content Include="imagenes\fotos\mujer.jpg" />
+    <Content Include="imagenes\fotos\paoortiz.jpg" />
     <Content Include="imagenes\guardar.bmp" />
     <Content Include="imagenes\icon_delete.gif" />
     <Content Include="imagenes\icon_edit.GIF" />
     <Content Include="imagenes\icon_logalum.GIF" />
     <Content Include="imagenes\img1.gif" />
     <Content Include="imagenes\instagram.png" />
+    <Content Include="imagenes\items.png" />
+    <Content Include="imagenes\items\audifonos.jpg" />
+    <Content Include="imagenes\items\bocina.jpg" />
+    <Content Include="imagenes\items\cable.jpg" />
+    <Content Include="imagenes\items\curso.jpg" />
+    <Content Include="imagenes\items\lap.jpg" />
+    <Content Include="imagenes\items\libreta.jpg" />
+    <Content Include="imagenes\items\libro.jpg" />
+    <Content Include="imagenes\items\libro2.jpg" />
+    <Content Include="imagenes\items\tablet.jpg" />
+    <Content Include="imagenes\items\usb.jpg" />
+    <Content Include="imagenes\items\visual.jpg" />
+    <Content Include="imagenes\itp.png" />
     <Content Include="imagenes\notepad.gif" />
     <Content Include="imagenes\ok.gif" />
     <Content Include="imagenes\promo1.png" />
@@ -149,6 +159,20 @@
     </Compile>
     <Compile Include="Formulario web1.aspx.designer.cs">
       <DependentUpon>Formulario web1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formulario web5.aspx.cs">
+      <DependentUpon>Formulario web5.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formulario web5.aspx.designer.cs">
+      <DependentUpon>Formulario web5.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formulario web3.aspx.cs">
+      <DependentUpon>Formulario web3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formulario web3.aspx.designer.cs">
+      <DependentUpon>Formulario web3.aspx</DependentUpon>
     </Compile>
     <Compile Include="Formulario web2.aspx.cs">
       <DependentUpon>Formulario web2.aspx</DependentUpon>

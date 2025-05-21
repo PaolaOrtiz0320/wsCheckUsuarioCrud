@@ -1,0 +1,124 @@
+﻿.tabla-bonita {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 0 12px rgba(75, 0, 130, 0.4);
+    border-radius: 10px;
+    overflow: hidden;
+    font-size: 16px;
+}
+
+    .tabla-bonita th, .tabla-bonita td {
+        padding: 10px;
+        text-align: center;
+    }
+
+/* Fondo morado en el encabezado */
+.header-top {
+    background-color: midnightblue;
+    color: white;
+}
+
+/* Barra de navegación */
+.navbar {
+    background-color: midnightblue;
+    text-align: center;
+    padding: 10px 0;
+}
+
+    /* Estilo de los enlaces */
+    .navbar a,
+    .navbar .aspNet-LinkButton,
+    .navbar .aspNet-LinkButton:visited {
+        color: white !important;
+        font-size: small;
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+        text-decoration: none;
+        margin: 0 15px;
+    }
+
+        /* Opcional: efecto al pasar el mouse */
+        .navbar a:hover,
+        .navbar .aspNet-LinkButton:hover {
+            text-decoration: underline;
+        }
+
+
+/* Contenedor del login o biblioteca */
+.contenedor-login {
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(75, 0, 130, 0.2); /* sombra morada suave */
+    text-align: center;
+}
+
+/* Título grande y moderno */
+.tituloContenido {
+    font-family: 'Arial'; 
+    font-size: 20px !important;
+    font-weight: 700;
+    color: #4B0082;
+    margin-bottom: 30px !important;
+    letter-spacing: 1.2px;
+}
+
+/* Grupo de inputs estilo moderno */
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+    .input-group label {
+        flex: 1;
+        font-weight: 600;
+        color: #4B0082;
+        font-size: 18px;
+        text-align: left;
+    }
+
+.form-control {
+    flex: 3;
+    padding: 10px 15px;
+    border: 2px solid #6a0dad;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+    .form-control:focus {
+        border-color: #9b30ff;
+        outline: none;
+        box-shadow: 0 0 8px #9b30ff88;
+    }
+
+/* Botón imagen con estilo botón primario */
+.btn-primary {
+    background-color: #6a0dad;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .btn-primary:hover {
+        background-color: #7b1fa2;
+    }
+
+    /* Icono dentro del botón */
+    .btn-primary img {
+        width: 24px;
+        height: 24px;
+    }
+
+
+.contenedor-grid {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto; /* Para scroll si es necesario */
+}

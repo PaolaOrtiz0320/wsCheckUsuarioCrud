@@ -1,0 +1,92 @@
+﻿.quienes-container {
+    max-width: 1000px;
+    margin: auto;
+    background: #f9f0ff;
+    border-radius: 20px;
+    padding: 40px 30px;
+    box-shadow: 0 0 20px rgba(106, 5, 114, 0.1);
+    text-align: center;
+}
+
+.quienes-title {
+    font-size: 24px;
+    font-family:Arial;
+    font-weight: bold;
+    color: #6a0572;
+    margin-bottom: 40px;
+}
+
+.personas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.persona {
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 20px;
+    width: 280px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    font-family: Arial;
+}
+
+    .persona:hover {
+        transform: translateY(-5px);
+    }
+
+.foto {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #6a0572;
+    margin-bottom: 15px;
+}
+
+.persona h3 {
+    color: #3b0069;
+    margin: 10px 0 5px;
+    font-family: Arial;
+}
+
+.persona p {
+    font-size: 14px;
+    font-family: Arial;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.linkedin-btn {
+    background-color: #0a66c2;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+    .linkedin-btn:hover {
+        background-color: #004182;
+    }
+
+.btn-container {
+    margin-top: 30px;
+}
+
+.volver-btn {
+    background-color: #6a0572;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-size: 16px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+    .volver-btn:hover {
+        background-color: #8f3aaf;
+    }

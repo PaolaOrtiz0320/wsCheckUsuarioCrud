@@ -1,0 +1,128 @@
+﻿/* Fondo morado animado tipo gradiente dinámico */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(-45deg, #6a0572, #ab83a1, #6a0572, #3a0ca3);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+}
+
+/* Animación para el fondo */
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Contenedor principal centrado */
+.contenedor-login {
+    background: rgba(75, 0, 130, 0.85);
+    padding: 40px 50px;
+    border-radius: 15px;
+    box-shadow: 0 8px 24px rgba(75, 0, 130, 0.7);
+    width: 100%;
+    max-width: 400px;
+    color: #e0c3fc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Separación entre campos */
+.input-group, .form-group {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+/* Etiquetas */
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #d1b3ff;
+    font-weight: 600;
+}
+
+/* Inputs */
+.form-control {
+    border: 2px solid #9b59b6;
+    border-radius: 8px;
+    background: #f8f0ff;
+    color: #3b0069;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+    .form-control:focus {
+        border-color: #7e3ebf;
+        box-shadow: 0 0 8px #9b59b6;
+        background: #fff;
+        color: #3b0069;
+    }
+
+/* Botón Iniciar Sesión */
+.btn-primary {
+    background: linear-gradient(45deg, #8e44ad, #5e3370);
+    border: none;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 12px 25px;
+    transition: background 0.3s ease;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+    .btn-primary:hover {
+        background: linear-gradient(45deg, #6c2f87, #3d1f56);
+    }
+
+/* Botón Registrarse */
+.btn-registrarse {
+    background: linear-gradient(45deg, #0077b6, #023e8a);
+    border: none;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 12px 25px;
+    transition: background 0.3s ease;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 15px; /* Separación del botón cancelar */
+}
+
+    .btn-registrarse:hover {
+        background: linear-gradient(45deg, #005f73, #001f3f);
+    }
+
+/* Botón Cancelar */
+.btn-danger {
+    background: linear-gradient(45deg, #c0392b, #7b241c);
+    border: none;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 12px 25px;
+    transition: background 0.3s ease;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+    .btn-danger:hover {
+        background: linear-gradient(45deg, #922b21, #4e150e);
+    }

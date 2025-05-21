@@ -13,7 +13,7 @@ namespace wsCheckUsuario
         protected void Application_Start(object sender, EventArgs e)
         {
             //Variables globales (Application)
-            Application["nomEmpresa"] = "e-comerce ITIC - ITP";
+            Application["nomEmpresa"] = "ITP Item Exchange";
 
         }
 
@@ -21,9 +21,9 @@ namespace wsCheckUsuario
         {
             //Variables locales (Session)
             Session["nomUsuario"] = "";
-            Session["urlUsuario"] = "";
+            Session["imgUsuario"] = "";
             Session["usuUsuario"] = "";
-            Session["rolUsuario"] = "";
+            Session["maUsuario"] = "";
 
         }
 

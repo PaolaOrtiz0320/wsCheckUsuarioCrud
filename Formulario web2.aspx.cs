@@ -28,26 +28,25 @@ namespace wsCheckUsuario
             if (Page.IsPostBack == false) {
                 //Llamada para ejecucion del metodo
                 await CargaDatosTipoUsuario();
+                await CargaDatosEstadoUsuario();
+                await CargaDatosUbicacionUsuario();
             }
 
         }
 
 
-        public class Usuario
+        public class Item
         {
-            public int USU_CVE_USUARIO { get; set; }
-            public string USU_NOMBRE { get; set; }
-            public string USU_APELLIDO_PATERNO { get; set; }
-            public string USU_APELLIDO_MATERNO { get; set; }
-            public string USU_USUARIO { get; set; }
-            public string USU_CONTRASENA { get; set; }
-            public string USU_RUTA { get; set; }
-            public int TIP_CVE_TIPOUSUARIO { get; set; }
-        }
-
-        public class Datos
-        {
-            public List<Usuario> vwRptUsuario { get; set; }
+            public int ITEM_ID { get; set; }
+            public string ITEM_NOMBRE { get; set; }
+            public string ITEM_DESCRIPCION { get; set; }
+            public string RUTA_IMAGEN { get; set; }
+            public string TIPO_NOMBRE { get; set; }
+            public string EST_DESCRIPCION { get; set; }
+            public string PROPIETARIO { get; set; }
+            public string HORA_ENTREGA { get; set; }
+            public string DIA_ENTREGA { get; set; }
+            public string LUGAR { get; set; }
         }
 
         public class RespuestaAPI
@@ -55,7 +54,7 @@ namespace wsCheckUsuario
             public bool statusExec { get; set; }
             public string msg { get; set; }
             public int ban { get; set; }
-            public Datos datos { get; set; }
+            public Item Item { get; set; }
         }
 
         // Creación del método asíncrono para ejecutar el
@@ -67,7 +66,7 @@ namespace wsCheckUsuario
                 using (HttpClient client = new HttpClient())
                 {
                     // Configuración de la peticion HTTP
-                    string apiUrl = "https://localhost:44370/check/usuario/vwTipoUsuario";
+                    string apiUrl = "https://localhost:44304/api/usuario/listarTipos";
                     // Ejecución del endpoint
                     HttpResponseMessage respuesta = await client.GetAsync(apiUrl);
                     // ---------------------------------------------------
@@ -80,15 +79,15 @@ namespace wsCheckUsuario
                         string resultado = await respuesta.Content.ReadAsStringAsync();
                         objRespuesta = JsonConvert.DeserializeObject<clsApiStatus>(resultado);
                         // ------------------------------------------
-                        JArray jsonArray = (JArray)objRespuesta.datos["vwTipoUsuario"];
+                        JArray jsonArray = (JArray)objRespuesta.datos["tipos"];
                         // Convertir JArray a DataTable
                         DataTable dt = JsonConvert.DeserializeObject<DataTable>(jsonArray.ToString());
                         // -------------------------------------------
                         // Visualización de los datos formateados DropDownList
-                        DropDownList1.DataSource = dt;
-                        DropDownList1.DataTextField = "descripcion";
-                        DropDownList1.DataValueField = "clave";
-                        DropDownList1.DataBind();
+                        DropDownListTipo.DataSource = dt;
+                        DropDownListTipo.DataTextField = "TIPO_NOMBRE";
+                        DropDownListTipo.DataValueField = "TIPO_ID";
+                        DropDownListTipo.DataBind();
                     }
                     else
                     {
@@ -105,9 +104,107 @@ namespace wsCheckUsuario
                                "</script>");
             }
         }
+
+
+        private async Task CargaDatosEstadoUsuario()
+        {
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    // Configuración de la peticion HTTP
+                    string apiUrl = "https://localhost:44304/api/usuario/listarEstados";
+                    // Ejecución del endpoint
+                    HttpResponseMessage respuesta = await client.GetAsync(apiUrl);
+                    // ---------------------------------------------------
+                    // Validación de recepción de respuesta Json
+                    clsApiStatus objRespuesta = new clsApiStatus();
+
+                    // Validación del estatus OK
+                    if (respuesta.IsSuccessStatusCode)
+                    {
+                        string resultado = await respuesta.Content.ReadAsStringAsync();
+                        objRespuesta = JsonConvert.DeserializeObject<clsApiStatus>(resultado);
+                        // ------------------------------------------
+                        JArray jsonArray = (JArray)objRespuesta.datos["estados"];
+                        // Convertir JArray a DataTable
+                        DataTable dt = JsonConvert.DeserializeObject<DataTable>(jsonArray.ToString());
+                        // -------------------------------------------
+                        // Visualización de los datos formateados DropDownList
+                        DropDownListEstado.DataSource = dt;
+                        DropDownListEstado.DataTextField = "EST_DESCRIPCION";
+                        DropDownListEstado.DataValueField = "EST_ID";
+                        DropDownListEstado.DataBind();
+                    }
+                    else
+                    {
+                        Response.Write("<script language='javascript'>" +
+                                       "alert('Error de conexión con el servicio');" +
+                                       "</script>");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script language='javascript'>" +
+                               "alert('Error de la aplicación, intentar nuevamente');" +
+                               "</script>");
+            }
+        }
+
+
+
+        private async Task CargaDatosUbicacionUsuario()
+        {
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    // Configuración de la peticion HTTP
+                    string apiUrl = "https://localhost:44304/api/usuario/listarUbicaciones";
+                    // Ejecución del endpoint
+                    HttpResponseMessage respuesta = await client.GetAsync(apiUrl);
+                    // ---------------------------------------------------
+                    // Validación de recepción de respuesta Json
+                    clsApiStatus objRespuesta = new clsApiStatus();
+
+                    // Validación del estatus OK
+                    if (respuesta.IsSuccessStatusCode)
+                    {
+                        string resultado = await respuesta.Content.ReadAsStringAsync();
+                        objRespuesta = JsonConvert.DeserializeObject<clsApiStatus>(resultado);
+                        // ------------------------------------------
+                        JArray jsonArray = (JArray)objRespuesta.datos["ubicaciones"];
+                        // Convertir JArray a DataTable
+                        DataTable dt = JsonConvert.DeserializeObject<DataTable>(jsonArray.ToString());
+                        // -------------------------------------------
+                        // Visualización de los datos formateados DropDownList
+                        DropDownListUbicacion.DataSource = dt;
+                        DropDownListUbicacion.DataTextField = "LUGAR";
+                        DropDownListUbicacion.DataValueField = "UBI_ID";
+                        DropDownListUbicacion.DataBind();
+                    }
+                    else
+                    {
+                        Response.Write("<script language='javascript'>" +
+                                       "alert('Error de conexión con el servicio');" +
+                                       "</script>");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script language='javascript'>" +
+                               "alert('Error de la aplicación, intentar nuevamente');" +
+                               "</script>");
+            }
+        }
+
+
+
         // Creación del método asíncrono para ejecutar el
         // endpoint spInsUsuario
-        private async Task cargaDatos()
+        private async Task insertarDatos()
         {
             try
             {
@@ -115,19 +212,21 @@ namespace wsCheckUsuario
                 {
                     // Configuración del Json que se enviará
                     String data = @"{
-                                  ""nombre"":""" + TextBox2.Text + "\"," +
-                                  "\"apellidoPaterno\":\"" + TextBox3.Text + "\"," +
-                                  "\"apellidoMaterno\":\"" + TextBox4.Text + "\"," +
-                                  "\"usuario\":\"" + TextBox5.Text + "\"," +
-                                  "\"contrasena\":\"" + TextBox6.Text + "\"," +
-                                  "\"ruta\":\"" + TextBox7.Text + "\"," +
-                                  "\"tipo\":\"" + DropDownList1.SelectedValue + "\"" +
+                                  ""Nombre"":""" + TextBox2.Text + "\"," +
+                                  "\"Descripcion\":\"" + TextBox3.Text + "\"," +
+                                  "\"TipoId\":\"" + DropDownListTipo.SelectedValue + "\"," +
+                                  "\"EstId\":\"" + DropDownListEstado.SelectedValue + "\"," +
+                                  "\"UsuId\":\"" + Session["idUsuario"].ToString() + "\"," +
+                                  "\"RutaImagen\":\"" + TextBox4.Text + "\"," +
+                                  "\"HoraEntrega\":\"" + TextBox5.Text + "\"," +
+                                  "\"DiaEntrega\":\"" + TextBox6.Text + "\"," +
+                                  "\"UbiId\":\"" + DropDownListUbicacion.SelectedValue + "\"" +
                                   "}";
                     // Configuración del contenido del <body> a enviar
                     HttpContent contenido = new StringContent
                                 (data, Encoding.UTF8, "application/json");
                     // Ejecución de la petición HTTP
-                    string apiUrl = "https://localhost:44370/check/usuario/spinusuario";
+                    string apiUrl = "https://localhost:44304/api/usuario/insertarItem";
                     // ----------------------------------------------
                     HttpResponseMessage respuesta =
                         await client.PostAsync(apiUrl, contenido);
@@ -146,7 +245,7 @@ namespace wsCheckUsuario
                         if (objRespuesta.ban == 0)
                         {
                             Response.Write("<script language='javascript'>" +
-                                           "alert('Usuario registrado exitosamente');" +
+                                           "alert('Item registrado exitosamente');" +
                                            "</script>");
                             Response.Write("<script language='javascript'>" +
                                            "document.location.href='Formulario web2.aspx';" +
@@ -155,13 +254,13 @@ namespace wsCheckUsuario
                         if (objRespuesta.ban == 1)
                         {
                             Response.Write("<script language='javascript'>" +
-                                           "alert('El nombre de usuario ya existe');" +
+                                           "alert('El nombre de item ya existe');" +
                                            "</script>");
                         }
                         if (objRespuesta.ban == 2)
                         {
                             Response.Write("<script language='javascript'>" +
-                                           "alert('El usuario ya existe');" +
+                                           "alert('El item ya existe');" +
                                            "</script>");
                         }
                         if (objRespuesta.ban == 3)
@@ -186,73 +285,15 @@ namespace wsCheckUsuario
                                "</script>");
             }
         }
-
-        private async Task DeleteUsuario()
+        //Consulta para actualizar 
+        private async Task consultaItemId()
         {
             try
             {
+
                 using (HttpClient client = new HttpClient())
                 {
-                    // Configuración del Json que se enviará
-                    String data = @"{
-                                      ""cve"":""" + TextBox1.Text + @"""
-                                    }";
-                    // Configuración del contenido del <body> a enviar
-                    HttpContent contenido = new StringContent
-                                (data, Encoding.UTF8, "application/json");
-                    // Ejecución de la petición HTTP
-                    string apiUrl = "https://localhost:44370/check/usuario/spDelUsuario";
-                    // ----------------------------------------------
-                    HttpResponseMessage respuesta =
-                        await client.PostAsync(apiUrl, contenido);
-                    // ---------------------------------------------------
-                    // Validación de recepción de respuesta Json
-                    clsApiStatus objRespuesta = new clsApiStatus();
-                    // ---------------------------------------------------
-
-                    if (respuesta.IsSuccessStatusCode)
-                    {
-                        string resultado =
-                                await respuesta.Content.ReadAsStringAsync();
-                        objRespuesta = JsonConvert.DeserializeObject<clsApiStatus>(resultado);
-
-                        // Bandera de estatus del proceso
-                        if (objRespuesta.ban == 0)
-                        {
-                            Response.Write("<script language='javascript'>" +
-                                           "alert('Usuario Eliminado exitosamente');" +
-                                           "</script>");
-                            Response.Write("<script language='javascript'>" +
-                                           "document.location.href='Formulario web2.aspx';" +
-                                           "</script>");
-                        }
-
-                    }
-                    else
-                    {
-                        Response.Write("<script language='javascript'>" +
-                                       "alert('Error de conexión con el servicio');" +
-                                       "</script>");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Response.Write("<script language='javascript'>" +
-                               "alert('Error de la aplicación, intentar nuevamente');" +
-                               "</script>");
-            }
-        }
-
-
-        private async Task consultaUsuarioPorClave()
-        {
-            try
-            {
-                using (HttpClient client = new HttpClient())
-                {
-                    string filtro = HttpUtility.UrlEncode(TextBox1.Text.Trim());
-                    string apiUrl = $"https://localhost:44370/check/usuario/vwRptUsuariocve?filtro={TextBox1.Text}";
+                    string apiUrl = "https://localhost:44304/api/usuario/listarItems?filtro=" + TextBox1.Text;
 
                     HttpResponseMessage respuesta = await client.GetAsync(apiUrl);
 
@@ -260,24 +301,35 @@ namespace wsCheckUsuario
                     {
                         string resultado = await respuesta.Content.ReadAsStringAsync();
 
-                        RespuestaAPI respuestaApi = JsonConvert.DeserializeObject<RespuestaAPI>(resultado);
+                        clsApiStatus objRespuesta = JsonConvert.DeserializeObject<clsApiStatus>(resultado);
 
-                        if (respuestaApi != null && respuestaApi.statusExec &&
-                            respuestaApi.datos != null && respuestaApi.datos.vwRptUsuario.Count > 0)
+                        if (objRespuesta != null && objRespuesta.statusExec)
                         {
-                            Usuario usuario = respuestaApi.datos.vwRptUsuario[0];
+                            JArray jsonArray = (JArray)objRespuesta.datos["items"];
 
-                            TextBox2.Text = usuario.USU_NOMBRE;
-                            TextBox3.Text = usuario.USU_APELLIDO_PATERNO;
-                            TextBox4.Text = usuario.USU_APELLIDO_MATERNO;
-                            TextBox5.Text = usuario.USU_USUARIO;
-                            TextBox6.Text = usuario.USU_CONTRASENA;
-                            TextBox7.Text = usuario.USU_RUTA;
-                            DropDownList1.SelectedValue = usuario.TIP_CVE_TIPOUSUARIO.ToString();
+                            if (jsonArray != null && jsonArray.Count > 0)
+                            {
+                                // Tomamos el primer item para llenar controles
+                                dynamic item = JsonConvert.DeserializeObject<dynamic>(jsonArray[0].ToString());
+
+                                TextBox2.Text = item.ITEM_NOMBRE;
+                                TextBox3.Text = item.ITEM_DESCRIPCION;
+                                TextBox4.Text = item.RUTA_IMAGEN;
+                                TextBox5.Text = item.HORA_ENTREGA;
+                                TextBox6.Text = item.DIA_ENTREGA;
+
+                                DropDownListTipo.SelectedValue = item.TIPO_NOMBRE;
+                                DropDownListEstado.SelectedValue = item.EST_DESCRIPCION;
+                                DropDownListUbicacion.SelectedValue = item.LUGAR;
+                            }
+                            else
+                            {
+                                Response.Write("<script>alert('Item no encontrado.');</script>");
+                            }
                         }
                         else
                         {
-                            Response.Write("<script>alert('Usuario no encontrado.');</script>");
+                            Response.Write("<script>alert('Error en la respuesta de la API.');</script>");
                         }
                     }
                     else
@@ -290,11 +342,11 @@ namespace wsCheckUsuario
             {
                 Response.Write("<script>alert('Error de aplicación: " + ex.Message + "');</script>");
             }
-
-
         }
 
-        private async Task updateDatos()
+
+        //ACTUALIZAR DATOS
+        private async Task actualizarItem()
         {
             try
             {
@@ -302,20 +354,21 @@ namespace wsCheckUsuario
                 {
                     // Configuración del Json que se enviará
                     String data = @"{
-                           ""cve"":""" + TextBox1.Text + "\"," +
-                                   "\"nombre\":\"" + TextBox2.Text + "\"," +
-                                  "\"apellidoPaterno\":\"" + TextBox3.Text + "\"," +
-                                  "\"apellidoMaterno\":\"" + TextBox4.Text + "\"," +
-                                  "\"usuario\":\"" + TextBox5.Text + "\"," +
-                                  "\"contrasena\":\"" + TextBox6.Text + "\"," +
-                                  "\"ruta\":\"" + TextBox7.Text + "\"," +
-                                  "\"tipo\":\"" + DropDownList1.SelectedValue + "\"" +
+                                  ""ItemId"":""" + TextBox1.Text + "\"," +
+                                  "\"Nombre\":\"" + TextBox2.Text + "\"," +
+                                  "\"Descripcion\":\"" + TextBox3.Text + "\"," +
+                                  "\"TipoId\":\"" + DropDownListTipo.SelectedValue + "\"," +
+                                  "\"EstId\":\"" + DropDownListEstado.SelectedValue + "\"," +
+                                  "\"Rutaimagen\":\"" + TextBox4.Text + "\"," +
+                                  "\"HoraEntrega\":\"" + TextBox5.Text + "\"," +
+                                  "\"DiaEntrega\":\"" + TextBox6.Text + "\"," +
+                                  "\"UbiId\":\"" + DropDownListUbicacion.SelectedValue + "\"" +
                                   "}";
                     // Configuración del contenido del <body> a enviar
                     HttpContent contenido = new StringContent
                                 (data, Encoding.UTF8, "application/json");
                     // Ejecución de la petición HTTP
-                    string apiUrl = "https://localhost:44370/check/usuario/spUpdUsuario";
+                    string apiUrl = "https://localhost:44304/api/usuario/actualizarItem";
                     // ----------------------------------------------
                     HttpResponseMessage respuesta =
                         await client.PostAsync(apiUrl, contenido);
@@ -334,7 +387,7 @@ namespace wsCheckUsuario
                         if (objRespuesta.ban == 0)
                         {
                             Response.Write("<script language='javascript'>" +
-                                           "alert('Usuario Actualizado exitosamente');" +
+                                           "alert('Item Actualizado exitosamente');" +
                                            "</script>");
                             Response.Write("<script language='javascript'>" +
                                            "document.location.href='Formulario web2.aspx';" +
@@ -357,6 +410,83 @@ namespace wsCheckUsuario
             }
         }
 
+
+        //Eliminar ITEM
+        private async Task EliminarItem()
+        {
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    // Configuración del Json que se enviará
+                    String data = @"{
+                                      ""ItemId"":""" + TextBox1.Text + @"""
+                                    }";
+                    // Configuración del contenido del <body> a enviar
+                    HttpContent contenido = new StringContent
+                                (data, Encoding.UTF8, "application/json");
+                    // Ejecución de la petición HTTP
+                    string apiUrl = "https://localhost:44304/api/usuario/eliminarItem";
+                    // ----------------------------------------------
+                    HttpResponseMessage respuesta =
+                        await client.PostAsync(apiUrl, contenido);
+                    // ---------------------------------------------------
+                    // Validación de recepción de respuesta Json
+                    clsApiStatus objRespuesta = new clsApiStatus();
+                    // ---------------------------------------------------
+
+                    if (respuesta.IsSuccessStatusCode)
+                    {
+                        string resultado =
+                                await respuesta.Content.ReadAsStringAsync();
+                        objRespuesta = JsonConvert.DeserializeObject<clsApiStatus>(resultado);
+
+                        // Bandera de estatus del proceso
+                        if (objRespuesta.ban == 0)
+                        {
+                            Response.Write("<script language='javascript'>" +
+                                           "alert('Item Eliminado exitosamente');" +
+                                           "</script>");
+                            Response.Write("<script language='javascript'>" +
+                                           "document.location.href='Formulario web2.aspx';" +
+                                           "</script>");
+                        }
+
+                    }
+                    else
+                    {
+                        Response.Write("<script language='javascript'>" +
+                                       "alert('Error de conexión con el servicio');" +
+                                       "</script>");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script language='javascript'>" +
+                               "alert('Error de la aplicación, intentar nuevamente');" +
+                               "</script>");
+            }
+        }
+
+        //Boton buscar por ID para actualizar 
+        protected async void ImageButton5_Click(object sender, ImageClickEventArgs e)
+        {
+            if (TextBox1.Text == "")
+            {
+                Response.Write("<script language='javascript'>" +
+                "alert('El ID está vacío');" +
+                "</script>");
+            }
+            else
+            {
+                await consultaItemId();
+            }  
+        
+        }
+
+        
+        //Boton para insertar iten
         protected async void Button1_Click(object sender, EventArgs e)
         {
             //Nombre 
@@ -369,129 +499,21 @@ namespace wsCheckUsuario
             }
             else
             {
-                //Apellido Paterno
+                //Descripcion
                 if (TextBox3.Text == "")
                 {
                     Response.Write("<script language='javascript'>" +
-                                   "alert('El A. Paterno esta vacio');" +
+                                   "alert('La Descripcion esta vacia');" +
                                    "</script>");
 
                 }
                 else
                 {
-                    //Apellido Materno
-                    if (TextBox4.Text == "")
-                    {
-                        Response.Write("<script language='javascript'>" +
-                                       "alert('El A. Materno esta vacio');" +
-                                       "</script>");
-
-                    }
-                    else
-                    {
-                        //Nombre 
-                        if (TextBox5.Text == "")
-                        {
-                            Response.Write("<script language='javascript'>" +
-                                           "alert('El Usuario esta vacio');" +
-                                           "</script>");
-
-                        }
-                        else
-                        {
-                            //Nombre 
-                            if (TextBox6.Text == "")
-                            {
-                                Response.Write("<script language='javascript'>" +
-                                               "alert('La contraseña esta vacio');" +
-                                               "</script>");
-
-                            }
-                            else
-                            {
-                                //Nombre 
-                                if (TextBox7.Text == "")
-                                {
-                                    Response.Write("<script language='javascript'>" +
-                                                   "alert('La ruta de la foto esta vacio');" +
-                                                   "</script>");
-
-                                }
-                                else
-                                {
-                                    //ejecucion asincrona del metodo de insercion de usuario
-                                    await cargaDatos();
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-        }
-
-        protected async void Button3_Click(object sender, EventArgs e)
-        {
-            if (TextBox1.Text == "")
-            {
-                Response.Write("<script language='javascript'>" +
-                "alert('El cve está vacío');" +
-                "</script>");
-            }
-            else
-            {
-                await DeleteUsuario();
-            }
-        }
-
-        protected async void ImageButton5_Click(object sender, ImageClickEventArgs e)
-        {
-            if (TextBox1.Text == "")
-            {
-                Response.Write("<script language='javascript'>" +
-                "alert('El cve está vacío');" +
-                "</script>");
-            }
-            else
-            {
-                await consultaUsuarioPorClave();
-            }
-        }
-
-        protected async void Button2_Click(object sender, EventArgs e)
-        {
-            if (TextBox1.Text == "")
-            {
-                Response.Write("<script language='javascript'>" +
-                "alert('El cve está vacío');" +
-                "</script>");
-            }
-            else
-            {
-                if (TextBox2.Text == "")
-            {
-                Response.Write("<script language='javascript'>" +
-                               "alert('El nombre esta vacio');" +
-                               "</script>");
-
-            }
-            else
-            {
-                    //Apellido Paterno
-                    if (TextBox3.Text == "")
-                    {
-                        Response.Write("<script language='javascript'>" +
-                                       "alert('El A. Paterno esta vacio');" +
-                                       "</script>");
-
-                    }
-                    else
-                    {
-                        //Apellido Materno
+                   
                         if (TextBox4.Text == "")
                         {
                             Response.Write("<script language='javascript'>" +
-                                           "alert('El A. Materno esta vacio');" +
+                                           "alert('La imagen esta vacia');" +
                                            "</script>");
 
                         }
@@ -501,7 +523,7 @@ namespace wsCheckUsuario
                             if (TextBox5.Text == "")
                             {
                                 Response.Write("<script language='javascript'>" +
-                                               "alert('El Usuario esta vacio');" +
+                                               "alert('La contraseña esta vacia');" +
                                                "</script>");
 
                             }
@@ -511,33 +533,106 @@ namespace wsCheckUsuario
                                 if (TextBox6.Text == "")
                                 {
                                     Response.Write("<script language='javascript'>" +
-                                                   "alert('La contraseña esta vacio');" +
+                                                   "alert('La ruta de la foto esta vacio');" +
                                                    "</script>");
 
                                 }
                                 else
                                 {
-                                    //Nombre 
-                                    if (TextBox7.Text == "")
-                                    {
-                                        Response.Write("<script language='javascript'>" +
-                                                       "alert('La ruta de la foto esta vacio');" +
-                                                       "</script>");
-
-                                    }
-                                    else
-                                    {
-                                        //ejecucion asincrona del metodo de insercion de usuario
-                                        await updateDatos();
-                                    }
+                                    //ejecucion asincrona del metodo de insercion de usuario
+                                    await insertarDatos();
                                 }
                             }
                         }
                     }
                 }
             }
+        //Boton modificar
+        protected async void Button2_Click(object sender, EventArgs e)
+        {
 
-           
+            if (TextBox1.Text == "")
+            {
+                Response.Write("<script language='javascript'>" +
+                "alert('El id está vacío');" +
+                "</script>");
+            }
+            else
+            {
+                if (TextBox2.Text == "")
+                {
+                    Response.Write("<script language='javascript'>" +
+                                   "alert('El nombre esta vacio');" +
+                                   "</script>");
+
+                }
+                else
+                {
+                    ///Descripcion
+                    if (TextBox3.Text == "")
+                    {
+                        Response.Write("<script language='javascript'>" +
+                                       "alert('La descripcion esta vacia');" +
+                                       "</script>");
+
+                    }
+                    else
+                    {
+                        //Ruta img
+                        if (TextBox4.Text == "")
+                        {
+                            Response.Write("<script language='javascript'>" +
+                                           "alert('La ruta de la imagen esta vacia');" +
+                                           "</script>");
+
+                        }
+                        else
+                        {
+                            //Hora
+                            if (TextBox5.Text == "")
+                            {
+                                Response.Write("<script language='javascript'>" +
+                                               "alert('La Hora esta vacio');" +
+                                               "</script>");
+
+                            }
+                            else
+                            {
+                                //Dia
+                                if (TextBox6.Text == "")
+                                {
+                                    Response.Write("<script language='javascript'>" +
+                                                   "alert('El dia esta vacio');" +
+                                                   "</script>");
+
+                                }
+                                else
+                                {
+                                        await actualizarItem();
+                                }
+                              }
+                          }
+                      }
+                  }
+              }
+           }
+        //Boton Eliminar
+        protected async void Button3_Click(object sender, EventArgs e)
+        {
+            if (TextBox1.Text == "")
+            {
+                Response.Write("<script language='javascript'>" +
+                "alert('El id está vacío');" +
+                "</script>");
+            }
+            else
+            {
+                await EliminarItem();
+            }
         }
     }
-}
+
+  }
+
+
+

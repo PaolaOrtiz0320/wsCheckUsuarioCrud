@@ -1,22 +1,20 @@
-## Tecnologico Nacional de Mexico Campus Pachuca
+# TECNOLÓGICO NACIONAL DE MÉXICO
 
-# Carrera:
-Ing. en Tic´s
+## Instituto Tecnológico de Pachuca
 
-# Materia:
-Taller de Desarrollo de Software Avanzado
+### Departamento Académico de Sistemas y Computación
 
-# Tema:
-wsCheckUsuario (Práctica CRUD Usuarios)
+## Taller Avanzado de Desarrollo de Software
 
-# Catedratico:
-Luis Alejandro Santana Valadez
+### Entrega - Práctica Integradora
 
-# Estudiante:
-Gabriela Paola Ortiz Velazquez 21200659
+*Profesor:* M.T.I. Luis Alejandro Santana Valadez
 
-# Fecha:
-03/05/2025
+*Estudiante:* 21200656 - Moedano Alcántara María Fernanda
+                21200659 - Ortiz Velázquez Gabriela Paola
+                21200666 - Soto Cadena Alan
 
-# Conclusion
-Esta actividad fue interesante la verdad es que nunca habia heco una pagina web con autentificacion de accesos, asi como implementar una base de datos y manipularla des de la interfaz como insertar eliminar y modificar en Visual Studio Comunity sin embargo veo que la estructura es algo mas compleja para crear un proyecto desde aqui usando lenguaje C, sin embargo es interesante y padre.
+*Fecha:* 21/05/2025
+
+## Conclusión
+La aplicación desarrollada permite gestionar eficientemente el préstamo de ítems dentro del Instituto Tecnológico de Pachuca, integrando backend en C# con frontend mediante el consumo de APIs y endpoints REST. Este sistema facilita el registro, control y seguimiento de usuarios e ítems, ofreciendo una solución funcional, segura y escalable que mejora los procesos internos del instituto mediante una comunicación fluida entre la base de datos, la lógica del servidor y la interfaz de usuario.

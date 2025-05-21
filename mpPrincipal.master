@@ -12,80 +12,83 @@
 </head>
 <body>
     <form id="form1" runat="server">
-                <div class="container">
+        <div class="container">
             <div class="row">
 
                 <table width="100%" border="0">
-                    <tr>
-                        <td colspan="2" bgcolor="midnightblue">
+                <tr>
+                    <!-- Header morado oscuro -->
+                    <td colspan="2" align="middle" bgcolor="#4B0082">  <!-- Indigo oscuro (moradito chido) -->
 
-                            <table width="100%" border="0">
-                             <tr>
-                                 <td width="20%" align="left">
-                                     <asp:Image ID="Image1" runat="server" ImageUrl="~/imagenes/bd1.jpg" Width="70px" Height="70px" />
-                                 </td>
-                                 <td width="60%" align="middle">
-                                     <asp:Label ID="Label1" runat="server" Text="Gestión de Usuarios - ITPachuca" CssClass="titulo"></asp:Label>
-                                     <br />
-                                     <asp:Image ID="Image5" runat="server" ImageUrl="~/imagenes/userinfo.gif" />
-&nbsp;
-                                     <asp:Label ID="Label6" runat="server" Font-Bold="False" Font-Names="Arial" Font-Size="Small" Text="Datos de la sesión, usuario, rol ..." CssClass="pie" ForeColor="White"></asp:Label>
-                                     &nbsp;
-                                     <asp:ImageButton ID="ImageButton4" runat="server" ImageUrl="~/imagenes/action_stop.gif"  ToolTip="Haz click aquí para cerrar sesión" OnClick="ImageButton4_Click" style="height: 16px" />
-                                 </td>
-                                 <td width="20%" align="right">
-                                     <asp:Image ID="Image2" runat="server" Width="70px" Height="70px" ImageUrl="~/imagenes/AboutUs.gif" />
-                                 </td>
-                             </tr>
-                            </table>
+                        <table width="100%" border="0">
+                         <tr>
+                             <td width="20%" align="left">
+                                 <asp:Image ID="Image1" runat="server" ImageUrl="~/imagenes/itp.png" Width="90px" Height="70px" />
+                             </td>
+                             <td width="60%" align="middle">
+                                 <asp:Label ID="Label1" runat="server" Text="ITP Item Exchange" CssClass="titulo"></asp:Label>
+                                 <br />
+                                 <asp:Image ID="Image5" runat="server" ImageUrl="~/imagenes/userinfo.gif" />
+                                 &nbsp;
+                                 <asp:Label ID="Label6" runat="server" Font-Bold="False" Font-Names="Arial" Font-Size="Small" Text="Datos de la sesión, alumno, matricula ..." CssClass="pie" ForeColor="White"></asp:Label>
+                                 &nbsp;
+                                 <asp:ImageButton ID="ImageButton4" runat="server" ImageUrl="~/imagenes/action_stop.gif"  ToolTip="Haz click aquí para cerrar sesión" OnClick="ImageButton4_Click" style="height: 16px" />
+                             </td>
+                             <td width="20%" align="right">
+                                 <asp:Image ID="Image2" runat="server" Width="70px" Height="70px" ImageUrl="~/imagenes/alumnos.png" />
+                             </td>
+                         </tr>
+                        </table>
 
-                        </td>
-                    </tr>            
-                    <tr>
-                        <td colspan="2" align="middle" bgcolor="lightblue">
-                            <asp:LinkButton ID="LinkButton1" runat="server" Font-Bold="True" Font-Names="Arial" Font-Size="X-Small" PostBackUrl="~/Formulario web1.aspx" ForeColor="#000066">Reporte de Usuarios</asp:LinkButton>
-                            &nbsp;&nbsp;
-                            <asp:LinkButton ID="LinkButton2" runat="server" Font-Bold="True" Font-Names="Arial" Font-Size="X-Small" PostBackUrl="~/Formulario web2.aspx" ForeColor="#000066">ABC Usuarios</asp:LinkButton>
-                        </td>
-                    </tr>            
-                    <tr>
-                        <td width="20%" align="middle" bgcolor="blue">
-                            <br />
-                            <asp:Label ID="Label2" runat="server" Font-Bold="False" Font-Names="Arial" Font-Size="Small" Text="Reporte de Usuarios vigentes:" ForeColor="White"></asp:Label>
-                            <br />
-                            <asp:Image ID="Image3" runat="server" ImageUrl="~/imagenes/tasks.gif" Width="42px" Height="29px" />
-                            <br /><br /><br />
-                            <asp:Label ID="Label3" runat="server" Font-Bold="False" Font-Names="Arial" Font-Size="Small" Text="Gestión de Usuarios registrados" ForeColor="White"></asp:Label>
-                            <br />
-                            <asp:Image ID="Image4" runat="server" ImageUrl="~/imagenes/AboutUs.gif" Width="42px" Height="29px" />
-                            <br /><br /><br />
-                        </td>
-                        <td width="80%">
-
-
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
-
-
-                        </td>
-                    </tr>            
-                    <tr>
-                        <td colspan="2" align="middle" bgcolor="lightblue">
-                            <asp:Label ID="Label4" runat="server" Font-Bold="False" Font-Names="Arial" Font-Size="Small" Text="Derechos Reservados del Autor. 2025" CssClass="pie"></asp:Label>
-                            &nbsp;
-                            <asp:Label ID="Label5" runat="server" Font-Bold="True" Font-Names="Arial" Font-Size="Small" Text="Aviso de Privacidad" CssClass="pieNegrita"></asp:Label>
-                            &nbsp;
-                            <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/imagenes/facebook.jpg" PostBackUrl="http://www.yahoo.com" CssClass="pieImg" />
-                            &nbsp;
-                            <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/imagenes/twitter.png" PostBackUrl="http://www.yahoo.com" CssClass="pieImg" />
-                            &nbsp;
-                            <asp:ImageButton ID="ImageButton3" runat="server" ImageUrl="~/imagenes/instagram.png" PostBackUrl="http://www.yahoo.com" CssClass="pieImg" />
-                        </td>
-                    </tr>            
+                    </td>
+                </tr>            
+                <tr>
+                    <!-- Barra de links morada y texto blanco -->
+                    <td  width="30%"colspan="2" align="middle" bgcolor="#6A0DAD">  <!-- Morado vivo -->
+                        <asp:LinkButton ID="LinkButton1" runat="server" Font-Bold="True" Font-Names="Arial" Font-Size="X-Small" PostBackUrl="~/Formulario web1.aspx" ForeColor="White">Listado de Items</asp:LinkButton>
+                        &nbsp;&nbsp;
+                        <asp:LinkButton ID="LinkButton2" runat="server" Font-Bold="True" Font-Names="Arial" Font-Size="X-Small" PostBackUrl="~/Formulario web2.aspx" ForeColor="White">Ajustes Items</asp:LinkButton>
+                        &nbsp;&nbsp;
+                        <asp:LinkButton ID="LinkButton3" runat="server" Font-Bold="True" Font-Names="Arial" Font-Size="X-Small" PostBackUrl="~/Formulario web3.aspx" ForeColor="White">Ajustes Alumno</asp:LinkButton>
+                        &nbsp;&nbsp;
+                        <asp:LinkButton ID="LinkButton4" runat="server" Font-Bold="True" Font-Names="Arial" Font-Size="X-Small" PostBackUrl="~/Formulario web4.aspx" ForeColor="White">Somos</asp:LinkButton>
+                    </td>
+                </tr>            
+                <tr>
+                    <!-- Columna lateral morada y contenido sin color de fondo -->
+                    <td width="20%" align="middle" bgcolor="#7B1FA2">  <!-- Morado medio -->
+                        <br />
+                        <asp:Label ID="Label2" runat="server" Font-Bold="False" Font-Names="Arial" Font-Size="Small" Text="¿Que cosas me pueden prestar?" ForeColor="White"></asp:Label>
+                        <br />
+                        <asp:Image ID="Image3" runat="server" ImageUrl="~/imagenes/items.png" Width="42px" Height="29px" />
+                        <br /><br /><br />
+                        <asp:Label ID="Label3" runat="server" Font-Bold="False" Font-Names="Arial" Font-Size="Small" Text="Gestión de Alumnos Registrados" ForeColor="White"></asp:Label>
+                        <br />
+                        <asp:Image ID="Image4" runat="server" ImageUrl="~/imagenes/alumnos.png" Width="42px" Height="29px" />
+                        <br /><br /><br />
+                    </td>
+                    <td width="80%">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </td>
+                </tr>            
+                <tr>
+                    <!-- Footer morado claro -->
+                    <td colspan="2" align="middle" bgcolor="#9C27B0">  <!-- Morado claro -->
+                        <asp:Label ID="Label4" runat="server" Font-Bold="False" Font-Names="Arial" Font-Size="Small" Text="Derechos Reservados del Autor. 2025"  ForeColor="White"></asp:Label>
+                        &nbsp;
+                        <asp:Label ID="Label5" runat="server" Font-Bold="True" Font-Names="Arial" Font-Size="Small" Text="Aviso de Privacidad"  ForeColor="White"></asp:Label>
+                        &nbsp;
+                        <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/imagenes/facebook.jpg" PostBackUrl="http://www.yahoo.com" CssClass="pieImg" />
+                        &nbsp;
+                        <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/imagenes/twitter.png" PostBackUrl="http://www.yahoo.com" CssClass="pieImg" />
+                        &nbsp;
+                        <asp:ImageButton ID="ImageButton3" runat="server" ImageUrl="~/imagenes/instagram.png" PostBackUrl="http://www.yahoo.com" CssClass="pieImg" />
+                    </td>
+                </tr>            
 
                 </table>
             </div>
-
         </div>
     </form>
 </body>
